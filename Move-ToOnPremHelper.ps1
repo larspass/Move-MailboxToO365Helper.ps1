@@ -1,11 +1,11 @@
 ﻿#Change these variables first to match your environment.
-$cloudadmin = "admin@domain.onmicrosoft.com"
-$onpremadmin = "domain.local\onpremadmin"
-$tenantURL = "domain.onmicrosoft.com"
-$onpremURL = "mail.domain.org"
-$targetdeliveryURL = "domain.org"
-$onpremDB = "EX2013-03-DB01"
-$archivedomain = "domain.mail.onmicrosoft.com"
+$cloudadmin = "admin@domain.onmicrosoft.com" `#Office 365 account with global administrator role
+$onpremadmin = "domain.local\onpremadmin" #On-premises domain admin
+$tenantURL = "domain.onmicrosoft.com" #Office 365 tenant root domain
+$onpremURL = "mail.domain.org" #On-premises OWA URL (for migration endpoint)
+$targetdeliveryURL = "domain.org" #Vanity domain used in Office 365
+$onpremDB = "EX2013-03-DB01" #Exchange Server Mailbox Database Name
+$archivedomain = "domain.mail.onmicrosoft.com" #Office 365 Exchange Online hybrid mailflow coexistence domain
 
 #Create a folder on current user's desktop for logging.
 If ((Test-Path “$ENV:USERPROFILE\Desktop\Move-ToOnPremHelper Logs”) -eq $false)

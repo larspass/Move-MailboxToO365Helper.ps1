@@ -1,13 +1,13 @@
-﻿#Change these variables first to match your environment.
-$cloudadmin = "admin@domain.onmicrosoft.com"
-$onpremadmin = "domain.local\onpremadmin"
-$tenantURL = "domain.onmicrosoft.com"
-$onpremURL = "mail.domain.org"
+﻿#Change these variables first to match your environment
+$cloudadmin = "admin@domain.onmicrosoft.com" #Office 365 account with global administrator role
+$onpremadmin = "domain.local\onpremadmin" #On-premises domain admin
+$tenantURL = "domain.onmicrosoft.com" #Office 365 tenant root domain
+$onpremURL = "mail.domain.org" #On-premises OWA URL (for migration endpoint)
 
 #Create a folder on current user's desktop for logging.
 If ((Test-Path “$ENV:USERPROFILE\Desktop\Move-ToCloudHelper Logs”) -eq $false)
 {
-Write-Host "Creating folder on the Desktop for logging."
+Write-Host "Folder not found, Creating folder on the Desktop for logging."
 New-Item -Type Directory -Path "$ENV:USERPROFILE\Desktop\Move-ToCloudHelper Logs"
 }
 Set-Location “$ENV:Userprofile\Desktop\Move-ToCloudHelper Logs”
@@ -43,8 +43,11 @@ Do  {
     sleep 5
     } 
     While ($progress -ne 100)
-$end=Get-date
-$result = ($end - $start)
+    $end=Get-date
+
+    $result = ($end - $start)
+
+#Send finishing messages to the user
 Write-Host "Moving mailbox $alias to the cloud took approximately $result to complete."
 Write-Host "Moving mailbox $alias to the cloud took approximately $result to complete." | Out-File -Append "$ENV:USERPROFILE\Desktop\Move-ToCloudHelper Logs\$ts.$alias.txt"
 Read-Host "Press enter to close."
